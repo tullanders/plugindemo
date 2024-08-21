@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APR (Anders Plugin Ramverk)</title>
+
+    <link rel="stylesheet" href="css/index.css">
+    <link href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js"></script>    
+</head>
+<body>
+    
+    <script type="module">
+        import PluginManager from './plugins/pluginmanager.mjs';
+    
+        const plugins = [];
+    
+        // Leaflet map
+        import LeafletMap from './plugins/leaflet/leaflet.map.mjs';
+        const leafletMap = new LeafletMap();
+        plugins.push(leafletMap);
+    
+        // Leaflet OpenRailwayMapLayer
+        import LeafletOpenRailwayMapLayer from './plugins/leaflet/leaflet.layer.openrailwaymap.mjs';
+        const leafletOpenRailwayMapLayer = new LeafletOpenRailwayMapLayer();
+        plugins.push(leafletOpenRailwayMapLayer);
+
+
+ 
+        // StationsData
+        import StationsData from './plugins/data.stations.mjs';
+        const stationsData = new StationsData();
+        plugins.push(stationsData);
+
+
+
+
+        
+        // Leaflet StationsLayer
+        import LeafletStationsLayer from './plugins/leaflet/leaflet.layer.stations.mjs';
+        const StationLayer = new LeafletStationsLayer();
+        plugins.push(StationLayer);
+        
+        // TrainAnnouncementData
+        import TrainAnnouncementData from './plugins/data.trainannouncement.mjs';
+        const trainAnnouncementData = new TrainAnnouncementData();
+        plugins.push(trainAnnouncementData);
+
+        // TrainPositionsData
+        import TrainPositionData from './plugins/data.trainposition.mjs';
+        const trainPositionData = new TrainPositionData();
+        plugins.push(trainPositionData);
+    
+        // Leaflet Train Layer
+        import LeafletTrainLayer from './plugins/leaflet/leaflet.layer.trains.mjs';
+        const TrainLayer = new LeafletTrainLayer();
+        plugins.push(TrainLayer);
+/*   
+        // Sidebar
+        import Sidebar from './plugins/sidebar.mjs';
+        const sidebar = new Sidebar();
+        
+
+        // Leaflet MyPosition
+        import MyPosition from './plugins/leaflet/leaflet.layer.myposition.mjs';
+        const myPosition = new MyPosition();
+        plugins.push(myPosition);
+    */       
+    
+        const pluginManager = new PluginManager(plugins);
+    
+    
+    </script>    
+</body>
+</html>
